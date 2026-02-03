@@ -2,10 +2,10 @@
 node_modules/
 
 # Build output
-dist/
+build/
 
-# Astro
-.astro/
+# Docusaurus
+.docusaurus/
 
 # Environment
 .env
