@@ -106,24 +106,8 @@ export default function AccessibilityWidget(): React.JSX.Element {
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
         aria-controls="accessibility-panel"
-        aria-label="Accessibility options"
-        title="Accessibility options"
       >
-        <svg
-          className={styles.icon}
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          aria-hidden="true"
-        >
-          <circle cx="12" cy="4.5" r="2.5" />
-          <path d="M12 7v10" />
-          <path d="M6.5 9.5L12 12l5.5-2.5" />
-          <path d="M8 21l4-4 4 4" />
-        </svg>
+        Accessibility
       </button>
 
       {isOpen && (
