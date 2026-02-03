@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styles from './styles.module.css';
 
 type ContrastMode = 'standard' | 'low' | 'high';
@@ -20,6 +20,7 @@ const defaultSettings: AccessibilitySettings = {
 export default function AccessibilityWidget(): React.JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const [settings, setSettings] = useState<AccessibilitySettings>(defaultSettings);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   // Load settings from localStorage on mount
   useEffect(() => {
@@ -34,6 +35,22 @@ export default function AccessibilityWidget(): React.JSX.Element {
       }
     }
   }, []);
+
+  // Close panel when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (panelRef.current && !panelRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isOpen]);
 
   // Apply settings to document
   const applySettings = (newSettings: AccessibilitySettings) => {
@@ -83,13 +100,14 @@ export default function AccessibilityWidget(): React.JSX.Element {
   };
 
   return (
-    <div className={styles.widget}>
+    <div className={styles.widget} ref={panelRef}>
       <button
         className={styles.trigger}
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
         aria-controls="accessibility-panel"
         aria-label="Accessibility options"
+        title="Accessibility options"
       >
         <svg
           className={styles.icon}
@@ -106,7 +124,6 @@ export default function AccessibilityWidget(): React.JSX.Element {
           <path d="M6.5 9.5L12 12l5.5-2.5" />
           <path d="M8 21l4-4 4 4" />
         </svg>
-        <span className={styles.triggerText}>Accessibility</span>
       </button>
 
       {isOpen && (
@@ -117,7 +134,7 @@ export default function AccessibilityWidget(): React.JSX.Element {
           aria-label="Accessibility settings"
         >
           <div className={styles.header}>
-            <h2 className={styles.title}>Accessibility Options</h2>
+            <h2 className={styles.title}>Accessibility</h2>
             <button
               className={styles.close}
               onClick={() => setIsOpen(false)}
@@ -127,75 +144,77 @@ export default function AccessibilityWidget(): React.JSX.Element {
             </button>
           </div>
 
-          <p className={styles.description}>
-            These options can change the way this website looks, which may help you to use it more easily.
-          </p>
+          <div className={styles.content}>
+            <p className={styles.description}>
+              Adjust how this site looks to suit your needs.
+            </p>
 
-          <div className={styles.section}>
-            <h3 className={styles.sectionTitle}>Contrast</h3>
-            <div className={styles.options}>
-              {(['standard', 'low', 'high'] as ContrastMode[]).map((mode) => (
-                <label key={mode} className={styles.option}>
-                  <input
-                    type="radio"
-                    name="contrast"
-                    value={mode}
-                    checked={settings.contrast === mode}
-                    onChange={() => updateSetting('contrast', mode)}
-                  />
-                  <span className={styles.optionLabel}>
-                    {mode.charAt(0).toUpperCase() + mode.slice(1)}
-                  </span>
-                </label>
-              ))}
+            <div className={styles.section}>
+              <h3 className={styles.sectionTitle}>Contrast</h3>
+              <div className={styles.options}>
+                {(['standard', 'low', 'high'] as ContrastMode[]).map((mode) => (
+                  <label key={mode} className={styles.option}>
+                    <input
+                      type="radio"
+                      name="contrast"
+                      value={mode}
+                      checked={settings.contrast === mode}
+                      onChange={() => updateSetting('contrast', mode)}
+                    />
+                    <span className={styles.optionLabel}>
+                      {mode.charAt(0).toUpperCase() + mode.slice(1)}
+                    </span>
+                  </label>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className={styles.section}>
-            <h3 className={styles.sectionTitle}>Text Size</h3>
-            <div className={styles.options}>
-              {([
-                { value: 'standard', label: 'Standard' },
-                { value: 'large', label: 'Large' },
-                { value: 'extra-large', label: 'Extra Large' },
-              ] as { value: TextSize; label: string }[]).map(({ value, label }) => (
-                <label key={value} className={styles.option}>
-                  <input
-                    type="radio"
-                    name="textSize"
-                    value={value}
-                    checked={settings.textSize === value}
-                    onChange={() => updateSetting('textSize', value)}
-                  />
-                  <span className={styles.optionLabel}>{label}</span>
-                </label>
-              ))}
+            <div className={styles.section}>
+              <h3 className={styles.sectionTitle}>Text Size</h3>
+              <div className={styles.options}>
+                {([
+                  { value: 'standard', label: 'Standard' },
+                  { value: 'large', label: 'Large' },
+                  { value: 'extra-large', label: 'Extra Large' },
+                ] as { value: TextSize; label: string }[]).map(({ value, label }) => (
+                  <label key={value} className={styles.option}>
+                    <input
+                      type="radio"
+                      name="textSize"
+                      value={value}
+                      checked={settings.textSize === value}
+                      onChange={() => updateSetting('textSize', value)}
+                    />
+                    <span className={styles.optionLabel}>{label}</span>
+                  </label>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className={styles.section}>
-            <h3 className={styles.sectionTitle}>Motion</h3>
-            <div className={styles.options}>
-              {(['standard', 'reduced'] as MotionMode[]).map((mode) => (
-                <label key={mode} className={styles.option}>
-                  <input
-                    type="radio"
-                    name="motion"
-                    value={mode}
-                    checked={settings.motion === mode}
-                    onChange={() => updateSetting('motion', mode)}
-                  />
-                  <span className={styles.optionLabel}>
-                    {mode.charAt(0).toUpperCase() + mode.slice(1)}
-                  </span>
-                </label>
-              ))}
+            <div className={styles.section}>
+              <h3 className={styles.sectionTitle}>Motion</h3>
+              <div className={styles.options}>
+                {(['standard', 'reduced'] as MotionMode[]).map((mode) => (
+                  <label key={mode} className={styles.option}>
+                    <input
+                      type="radio"
+                      name="motion"
+                      value={mode}
+                      checked={settings.motion === mode}
+                      onChange={() => updateSetting('motion', mode)}
+                    />
+                    <span className={styles.optionLabel}>
+                      {mode.charAt(0).toUpperCase() + mode.slice(1)}
+                    </span>
+                  </label>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <button className={styles.reset} onClick={resetSettings}>
-            Reset to defaults
-          </button>
+            <button className={styles.reset} onClick={resetSettings}>
+              Reset to defaults
+            </button>
+          </div>
         </div>
       )}
     </div>
