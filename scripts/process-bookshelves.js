@@ -9,7 +9,13 @@
  * Add new images to static/bookshelves/ and re-run (or just `npm start`).
  */
 
-const sharp = require('sharp');
+let sharp;
+try {
+  sharp = require('sharp');
+} catch {
+  console.error('sharp is not installed. Run: npm install sharp');
+  process.exit(1);
+}
 const fs = require('fs');
 const path = require('path');
 
