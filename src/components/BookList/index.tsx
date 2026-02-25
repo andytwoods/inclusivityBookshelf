@@ -141,8 +141,8 @@ const books: Book[] = [
 
 export default function BookList(): React.JSX.Element {
   return (
-    <section>
-      <h2>Book suggestions</h2>
+    <section aria-labelledby="booklist-heading">
+      <h2 id="booklist-heading">Book suggestions</h2>
       <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1rem 2rem' }}>
         {books.map(({ title, author, url }) => (
           <li key={url}>

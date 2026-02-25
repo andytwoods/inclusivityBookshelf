@@ -215,6 +215,18 @@
   color: var(--ifm-color-primary);
 }
 
+/* ----- Links: non-colour visual indicator (WCAG 1.4.1) ----- */
+.sections-wrap a,
+.footer__copyright a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.sections-wrap a:hover,
+.footer__copyright a:hover {
+  text-decoration-thickness: 2px;
+}
+
 /* ----- Contact Section ----- */
 #contact {
   scroll-margin-top: 5rem;
