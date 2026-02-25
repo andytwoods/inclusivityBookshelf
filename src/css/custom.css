@@ -247,6 +247,11 @@
   .hero-photo-right {
     display: none;
   }
+
+  .hero-centre {
+    width: clamp(180px, 55%, 340px) !important;
+    padding: 1.5rem 1rem !important;
+  }
 }
 
 @media (max-width: 30rem) {

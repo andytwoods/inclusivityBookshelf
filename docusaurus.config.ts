@@ -72,17 +72,7 @@ const config: Config = {
     },
     footer: {
       style: 'light',
-      links: [
-        {
-          items: [
-            {
-              label: 'GitHub',
-              href: 'https://github.com/andytwoods/inclusivityBookshelf',
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} Inclusivity Bookshelf. MIT Licensed.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Inclusivity Bookshelf. Released under the <a href="https://github.com/andytwoods/inclusivityBookshelf/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a> — this site is open source and <a href="https://github.com/andytwoods/inclusivityBookshelf" target="_blank" rel="noopener noreferrer">contributions are very welcome on GitHub</a>.`,
     },
   } satisfies Preset.ThemeConfig,
 };

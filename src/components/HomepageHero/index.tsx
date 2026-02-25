@@ -25,6 +25,7 @@ export default function HomepageHero(): React.JSX.Element {
 
       {/* Centre text */}
       <div
+        className="hero-centre"
         style={{
           flex: '0 0 auto',
           width: 'clamp(260px, 36%, 480px)',
