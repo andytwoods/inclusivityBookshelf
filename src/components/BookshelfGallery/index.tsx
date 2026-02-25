@@ -66,7 +66,7 @@ function Lightbox({ item, onClose, triggerEl }: {
       >
         <img
           src={item.src}
-          alt={`Enlarged: ${item.department} bookshelf, ${item.university}, ${item.year}`}
+          alt={`${item.department} bookshelf, ${item.university}, ${item.year}`}
           style={{ maxWidth: '90vw', maxHeight: '75vh', borderRadius: '8px', objectFit: 'contain' }}
         />
         <p

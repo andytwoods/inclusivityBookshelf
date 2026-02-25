@@ -43,7 +43,7 @@ export default function HomepageHero(): React.JSX.Element {
         <h1 style={{ fontSize: '2rem', margin: '0 0 0.6rem', lineHeight: 1.25 }}>
           Inclusivity Bookshelf
         </h1>
-        <p style={{ margin: '0 0 1.75rem', opacity: 0.75 }}>
+        <p style={{ margin: '0 0 1.75rem', color: 'var(--color-text-muted)' }}>
           A simple way to build inclusion
         </p>
         <a href="#contact" className="btn btn-primary">
