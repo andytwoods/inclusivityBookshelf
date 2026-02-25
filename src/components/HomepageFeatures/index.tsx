@@ -1,48 +1,15 @@
 import React from 'react';
 
-interface FeatureItem {
-  title: string;
-  description: string;
-}
-
-const features: FeatureItem[] = [
-  {
-    title: 'Low Cost',
-    description: 'text',
-  },
-  {
-    title: 'High Visibility',
-    description: 'text',
-  },
-  {
-    title: 'Community Ownership',
-    description: 'text',
-  },
-  {
-    title: 'Proven Impact',
-    description: 'text',
-  },
-];
-
-function FeatureCard({title, description}: FeatureItem): React.JSX.Element {
-  return (
-    <div className="card">
-      <h3>{title}</h3>
-      <p>{description}</p>
-    </div>
-  );
-}
-
 export default function HomepageFeatures(): React.JSX.Element {
   return (
-    <section aria-labelledby="why-heading">
-      <h2 id="why-heading">Why Inclusivity Bookshelves?</h2>
-      <p>text</p>
-      <div className="card-grid">
-        {features.map((feature, idx) => (
-          <FeatureCard key={idx} {...feature} />
-        ))}
-      </div>
+    <section>
+      <p>This is a super simple idea. It's easy to set up, and it gets people talking. Find a space in your department, your shared kitchen space, or even in the corridor, and start populating it with books on inclusion!</p>
+      <p>We started doing this a few years ago. We were kindly given £100 by our group to ebay some books (see our list below) and a colleague's partner kindly built a shelf. The books started arriving in the post and our shelf took off.</p>
+      <p>And new books starting appearing, that we hadnt bought. As well as inclusion-based items, such as a flyer for "Andy's Man Club".</p>
+      <p>The shelf grew so popular we got another £150 to buy more books.</p>
+      <p>With chatted with friends around campus about the bookshelf. A few months later other bookshelves starting popping up in different departments.</p>
+      <p>Is this the start of a plague of inclusive bookshelves? We hope so!</p>
+      <p>We would dearly love it if you would consider setting up your own bookshelf. Send us a photo and your location and we'll add to the below.</p>
     </section>
   );
 }
