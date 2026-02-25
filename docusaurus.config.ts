@@ -42,13 +42,6 @@ const config: Config = {
     },
     navbar: {
       title: 'Inclusivity Bookshelf',
-      items: [
-        {
-          href: '#contact',
-          label: 'Contact',
-          position: 'right',
-        },
-      ],
     },
     footer: {
       style: 'light',
