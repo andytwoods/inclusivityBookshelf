@@ -13,6 +13,25 @@ const config: Config = {
   organizationName: 'inclusivitybookshelf',
   projectName: 'inclusivitybookshelf',
 
+  headTags: [
+    { tagName: 'link', attributes: { rel: 'apple-touch-icon', sizes: '180x180', href: '/img/apple-touch-icon.png' } },
+    { tagName: 'link', attributes: { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/img/favicon-32x32.png' } },
+    { tagName: 'link', attributes: { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/img/favicon-16x16.png' } },
+    { tagName: 'link', attributes: { rel: 'manifest', href: '/img/site.webmanifest' } },
+    {
+      tagName: 'script',
+      attributes: { type: 'application/ld+json' },
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'Inclusivity Bookshelf',
+        description: 'A simple, low-cost way to build inclusion in your department — start a physical bookshelf with books on diversity, neurodiversity, race, gender, and belonging.',
+        url: 'https://www.inclusivitybookshelf.com',
+        author: { '@type': 'Person', name: 'Andy Woods', affiliation: 'Royal Holloway, University of London' },
+      }),
+    },
+  ],
+
   onBrokenLinks: 'throw',
   onBrokenAnchors: 'ignore',
 
@@ -35,6 +54,14 @@ const config: Config = {
   ],
 
   themeConfig: {
+    image: 'img/social-card.png',
+    metadata: [
+      { name: 'keywords', content: 'inclusivity, bookshelf, inclusion, diversity, neurodiversity, race, gender, belonging, DEI, DEIB, university, department' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:site', content: '@inclusivitybookshelf' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'Inclusivity Bookshelf' },
+    ],
     colorMode: {
       defaultMode: 'light',
       disableSwitch: false,

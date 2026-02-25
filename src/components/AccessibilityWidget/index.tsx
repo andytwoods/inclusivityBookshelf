@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useColorMode } from '@docusaurus/theme-common';
 import styles from './styles.module.css';
 
 type ContrastMode = 'standard' | 'low' | 'high';
@@ -17,10 +18,15 @@ const defaultSettings: AccessibilitySettings = {
   motion: 'standard',
 };
 
+const FOCUSABLE = 'button, [href], input, [tabindex]:not([tabindex="-1"])';
+
 export default function AccessibilityWidget(): React.JSX.Element {
+  const { colorMode, setColorMode } = useColorMode();
   const [isOpen, setIsOpen] = useState(false);
   const [settings, setSettings] = useState<AccessibilitySettings>(defaultSettings);
   const panelRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
 
   // Load settings from localStorage on mount
   useEffect(() => {
@@ -36,56 +42,66 @@ export default function AccessibilityWidget(): React.JSX.Element {
     }
   }, []);
 
-  // Close panel when clicking outside
+  // When panel opens: focus close button. When it closes: return focus to trigger.
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (panelRef.current && !panelRef.current.contains(event.target as Node)) {
+    if (isOpen) {
+      closeRef.current?.focus();
+    } else {
+      triggerRef.current?.focus();
+    }
+  }, [isOpen]);
+
+  // Close on outside click, Escape key, and focus trap
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (panelRef.current && !panelRef.current.contains(e.target as Node)) {
         setIsOpen(false);
       }
     };
 
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { setIsOpen(false); return; }
+      if (e.key === 'Tab' && panelRef.current) {
+        const focusable = Array.from(
+          panelRef.current.querySelectorAll<HTMLElement>(FOCUSABLE)
+        );
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault(); last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault(); first.focus();
+        }
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen]);
 
-  // Apply settings to document
   const applySettings = (newSettings: AccessibilitySettings) => {
     const html = document.documentElement;
-
-    // Remove existing classes
     html.classList.remove(
-      'a11y-contrast-low',
-      'a11y-contrast-high',
-      'a11y-text-large',
-      'a11y-text-extra-large',
+      'a11y-contrast-low', 'a11y-contrast-high',
+      'a11y-text-large', 'a11y-text-extra-large',
       'a11y-motion-reduced'
     );
-
-    // Apply new classes
-    if (newSettings.contrast === 'low') {
-      html.classList.add('a11y-contrast-low');
-    } else if (newSettings.contrast === 'high') {
-      html.classList.add('a11y-contrast-high');
-    }
-
-    if (newSettings.textSize === 'large') {
-      html.classList.add('a11y-text-large');
-    } else if (newSettings.textSize === 'extra-large') {
-      html.classList.add('a11y-text-extra-large');
-    }
-
-    if (newSettings.motion === 'reduced') {
-      html.classList.add('a11y-motion-reduced');
-    }
+    if (newSettings.contrast === 'low') html.classList.add('a11y-contrast-low');
+    else if (newSettings.contrast === 'high') html.classList.add('a11y-contrast-high');
+    if (newSettings.textSize === 'large') html.classList.add('a11y-text-large');
+    else if (newSettings.textSize === 'extra-large') html.classList.add('a11y-text-extra-large');
+    if (newSettings.motion === 'reduced') html.classList.add('a11y-motion-reduced');
   };
 
   const updateSetting = <K extends keyof AccessibilitySettings>(
-    key: K,
-    value: AccessibilitySettings[K]
+    key: K, value: AccessibilitySettings[K]
   ) => {
     const newSettings = { ...settings, [key]: value };
     setSettings(newSettings);
@@ -97,11 +113,14 @@ export default function AccessibilityWidget(): React.JSX.Element {
     setSettings(defaultSettings);
     applySettings(defaultSettings);
     localStorage.removeItem('accessibility-settings');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setColorMode(prefersDark ? 'dark' : 'light');
   };
 
   return (
     <div className={styles.widget} ref={panelRef}>
       <button
+        ref={triggerRef}
         className={styles.trigger}
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
@@ -115,11 +134,13 @@ export default function AccessibilityWidget(): React.JSX.Element {
           id="accessibility-panel"
           className={styles.panel}
           role="dialog"
+          aria-modal="true"
           aria-label="Accessibility settings"
         >
           <div className={styles.header}>
             <h2 className={styles.title}>Accessibility</h2>
             <button
+              ref={closeRef}
               className={styles.close}
               onClick={() => setIsOpen(false)}
               aria-label="Close accessibility options"
@@ -133,8 +154,8 @@ export default function AccessibilityWidget(): React.JSX.Element {
               Adjust how this site looks to suit your needs.
             </p>
 
-            <div className={styles.section}>
-              <h3 className={styles.sectionTitle}>Contrast</h3>
+            <fieldset className={styles.section}>
+              <legend className={styles.sectionTitle}>Contrast</legend>
               <div className={styles.options}>
                 {(['standard', 'low', 'high'] as ContrastMode[]).map((mode) => (
                   <label key={mode} className={styles.option}>
@@ -151,10 +172,10 @@ export default function AccessibilityWidget(): React.JSX.Element {
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
-            <div className={styles.section}>
-              <h3 className={styles.sectionTitle}>Text Size</h3>
+            <fieldset className={styles.section}>
+              <legend className={styles.sectionTitle}>Text Size</legend>
               <div className={styles.options}>
                 {([
                   { value: 'standard', label: 'Standard' },
@@ -173,10 +194,10 @@ export default function AccessibilityWidget(): React.JSX.Element {
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
 
-            <div className={styles.section}>
-              <h3 className={styles.sectionTitle}>Motion</h3>
+            <fieldset className={styles.section}>
+              <legend className={styles.sectionTitle}>Motion</legend>
               <div className={styles.options}>
                 {(['standard', 'reduced'] as MotionMode[]).map((mode) => (
                   <label key={mode} className={styles.option}>
@@ -193,7 +214,27 @@ export default function AccessibilityWidget(): React.JSX.Element {
                   </label>
                 ))}
               </div>
-            </div>
+            </fieldset>
+
+            <fieldset className={styles.section}>
+              <legend className={styles.sectionTitle}>Colour Scheme</legend>
+              <div className={styles.options}>
+                {(['light', 'dark'] as const).map((mode) => (
+                  <label key={mode} className={styles.option}>
+                    <input
+                      type="radio"
+                      name="colorScheme"
+                      value={mode}
+                      checked={colorMode === mode}
+                      onChange={() => setColorMode(mode)}
+                    />
+                    <span className={styles.optionLabel}>
+                      {mode.charAt(0).toUpperCase() + mode.slice(1)}
+                    </span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
 
             <button className={styles.reset} onClick={resetSettings}>
               Reset to defaults

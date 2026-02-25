@@ -143,9 +143,9 @@ export default function BookList(): React.JSX.Element {
   return (
     <section>
       <h2>Book suggestions</h2>
-      <ul style={{ listStyle: 'none', padding: 0, margin: 0, columns: '2 320px', gap: '0.5rem 2rem' }}>
+      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1rem 2rem' }}>
         {books.map(({ title, author, url }) => (
-          <li key={url} style={{ breakInside: 'avoid', marginBottom: '1rem' }}>
+          <li key={url}>
             <a href={url} target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600 }}>
               {title}
             </a>

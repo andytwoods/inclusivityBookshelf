@@ -10,8 +10,10 @@ export default function HomepageHero(): React.JSX.Element {
         overflow: 'hidden',
       }}
     >
-      {/* Left photo */}
+      {/* Left photo — decorative */}
       <div
+        aria-hidden="true"
+        role="presentation"
         style={{
           flex: '1 1 30%',
           backgroundImage: `url('/bookshelves/rhul_storyfutures_2023_bookshelf.jpg')`,
@@ -48,8 +50,10 @@ export default function HomepageHero(): React.JSX.Element {
         </a>
       </div>
 
-      {/* Right photo */}
+      {/* Right photo — decorative */}
       <div
+        aria-hidden="true"
+        role="presentation"
         style={{
           flex: '1 1 30%',
           backgroundImage: `url('/bookshelves/rhul_physics_2026_bookshelf.jpg')`,
