@@ -243,6 +243,10 @@
   .sections-wrap h2 {
     font-size: 1.45rem;
   }
+
+  .hero-photo-right {
+    display: none;
+  }
 }
 
 @media (max-width: 30rem) {

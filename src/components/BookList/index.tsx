@@ -10,7 +10,7 @@ const books: Book[] = [
   {
     title: 'The Art of Thinking Clearly: Better Thinking, Better Decisions',
     author: 'Rolf Dobelli',
-    url: 'https://www.harpercollins.co.uk/products/the-art-of-thinking-clearly-rolf-dobelli',
+    url: 'https://www.hachette.co.uk/titles/rolf-dobelli/the-art-of-thinking-clearly/9781444759563/',
   },
   {
     title: 'Creating Meaningful Impact: The Essential Guide to Developing an Impact-Literate Mindset',
@@ -25,7 +25,7 @@ const books: Book[] = [
   {
     title: 'Ways of Being: Animals, Plants, Machines — The Search for a Planetary Intelligence',
     author: 'James Bridle',
-    url: 'https://www.penguin.co.uk/books/315209/ways-of-being-by-bridle-james/9780141994269',
+    url: 'https://www.penguin.co.uk/books/317823/ways-of-being-by-bridle-james/9780141994260',
   },
   {
     title: 'Unmasking Autism: Discovering the New Faces of Neurodiversity',
@@ -45,7 +45,7 @@ const books: Book[] = [
   {
     title: 'Against Technoableism: Rethinking Who Needs Improvement',
     author: 'Ashley Shew',
-    url: 'https://wwnorton.com/books/9781324063895',
+    url: 'https://wwnorton.com/books/9781324076254',
   },
   {
     title: 'Why I\'m No Longer Talking to White People About Race',
@@ -60,37 +60,37 @@ const books: Book[] = [
   {
     title: 'White Fragility: Why It\'s So Hard for White People to Talk About Racism',
     author: 'Robin DiAngelo',
-    url: 'https://www.penguin.co.uk/books/316527/white-fragility-by-diangelo-robin/9780241982976',
+    url: 'https://www.penguin.co.uk/books/313406/white-fragility-by-diangelo-robin/9780141990569',
   },
   {
     title: 'Brit(ish): On Race, Identity and Belonging',
     author: 'Afua Hirsch',
-    url: 'https://www.penguin.co.uk/books/1111116/british-by-hirsch-afua/9781784705038',
+    url: 'https://www.penguin.co.uk/books/434457/british-by-afua-hirsch/9781784705039',
   },
   {
     title: 'Men Explain Things to Me',
     author: 'Rebecca Solnit',
-    url: 'https://www.haymarketbooks.org/books/676-men-explain-things-to-me',
+    url: 'https://granta.com/products/men-explain-things-to-me/',
   },
   {
     title: 'No Turning Back: The History of Feminism and the Future of Women',
     author: 'Estelle B. Freedman',
-    url: 'https://www.penguinrandomhouse.com/books/293089/no-turning-back-by-estelle-b-freedman/',
+    url: 'https://penguinrandomhousehighereducation.com/book/?isbn=9780345450531',
   },
   {
     title: 'The Authority Gap: Why Women Are Still Taken Less Seriously Than Men, and What We Can Do About It',
     author: 'Mary Ann Sieghart',
-    url: 'https://www.penguin.co.uk/books/313722/the-authority-gap-by-sieghart-mary-ann/9780857527560',
+    url: 'https://www.penguin.co.uk/books/442736/the-authority-gap-by-mary-ann-sieghart/9781784165888',
   },
   {
     title: 'Everyday Sexism',
     author: 'Laura Bates',
-    url: 'https://www.simonandschuster.co.uk/books/Everyday-Sexism/Laura-Bates/9781471133953',
+    url: 'https://www.simonandschuster.co.uk/books/Everyday-Sexism/Laura-Bates/9781471149207',
   },
   {
     title: 'Data Feminism',
     author: "Catherine D'Ignazio & Lauren F. Klein",
-    url: 'https://mitpress.mit.edu/9780262044003/data-feminism/',
+    url: 'https://mitpress.mit.edu/9780262547185/data-feminism/',
   },
   {
     title: 'All About Love: New Visions',
@@ -100,42 +100,42 @@ const books: Book[] = [
   {
     title: 'Mismatch: How Inclusion Shapes Design',
     author: 'Kat Holmes',
-    url: 'https://mitpress.mit.edu/9780262038880/mismatch/',
+    url: 'https://mitpress.mit.edu/9780262539487/mismatch/',
   },
   {
     title: 'Disability Visibility: First-Person Stories from the Twenty-First Century',
     author: 'Edited by Alice Wong',
-    url: 'https://www.penguinrandomhouse.com/books/609220/disability-visibility-by-alice-wong/',
+    url: 'https://www.penguinrandomhouse.com/books/617802/disability-visibility-by-alice-wong/',
   },
   {
     title: 'Feminist, Queer, Crip: Essays',
     author: 'Alison Kafer',
-    url: 'https://iupress.org/9780253009349/feminist-queer-crip/',
+    url: 'https://iupress.org/9780253009340/feminist-queer-crip/',
   },
   {
     title: 'Invisible Women: Exposing Data Bias in a World Designed for Men',
     author: 'Caroline Criado Perez',
-    url: 'https://www.penguin.co.uk/books/1113605/invisible-women-by-criado-perez-caroline/9781784706288',
+    url: 'https://www.penguin.co.uk/books/435554/invisible-women-by-perez-caroline-criado/9781784706289',
   },
   {
     title: 'Race After Technology: Abolitionist Tools for the New Jim Code',
     author: 'Ruha Benjamin',
-    url: 'https://www.politybooks.com/bookdetail?book_slug=race-after-technology--9781509526405',
+    url: 'https://www.politybooks.com/bookdetail?book_slug=race-after-technology-abolitionist-tools-for-the-new-jim-code--9781509526390',
   },
   {
     title: 'Black Software: The Internet and Racial Justice, from the AfroNet to Black Lives Matter',
     author: 'Charlton D. McIlwain',
-    url: 'https://press.princeton.edu/books/hardcover/9780691155783/black-software',
+    url: 'https://global.oup.com/academic/product/black-software-9780190863845',
   },
   {
     title: 'Algorithms of Oppression: How Search Engines Reinforce Racism',
     author: 'Safiya Umoja Noble',
-    url: 'https://nyupress.org/9781479837242/algorithms-of-oppression/',
+    url: 'https://nyupress.org/9781479837243/algorithms-of-oppression/',
   },
   {
     title: 'Chavs: The Demonization of the Working Class',
     author: 'Owen Jones',
-    url: 'https://www.versobooks.com/products/776-chavs',
+    url: 'https://www.versobooks.com/products/2199-chavs',
   },
 ];
 

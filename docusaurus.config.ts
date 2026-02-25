@@ -5,7 +5,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   title: 'Inclusivity Bookshelf',
   tagline: 'A simple way to build inclusion',
-  favicon: 'img/favicon.svg',
+  favicon: 'img/favicon.ico',
 
   url: 'https://www.inclusivitybookshelf.com',
   baseUrl: '/',
@@ -65,14 +65,24 @@ const config: Config = {
     colorMode: {
       defaultMode: 'light',
       disableSwitch: false,
-      respectPrefersColorScheme: true,
+      respectPrefersColorScheme: false,
     },
     navbar: {
       title: 'Inclusivity Bookshelf',
     },
     footer: {
       style: 'light',
-      copyright: `Copyright © ${new Date().getFullYear()} Inclusivity Bookshelf.`,
+      links: [
+        {
+          items: [
+            {
+              label: 'GitHub',
+              href: 'https://github.com/andytwoods/inclusivityBookshelf',
+            },
+          ],
+        },
+      ],
+      copyright: `Copyright © ${new Date().getFullYear()} Inclusivity Bookshelf. MIT Licensed.`,
     },
   } satisfies Preset.ThemeConfig,
 };

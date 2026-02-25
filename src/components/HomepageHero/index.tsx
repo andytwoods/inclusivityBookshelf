@@ -50,10 +50,11 @@ export default function HomepageHero(): React.JSX.Element {
         </a>
       </div>
 
-      {/* Right photo — decorative */}
+      {/* Right photo — decorative, hidden on small screens */}
       <div
         aria-hidden="true"
         role="presentation"
+        className="hero-photo-right"
         style={{
           flex: '1 1 30%',
           backgroundImage: `url('/bookshelves/rhul_physics_2026_bookshelf.jpg')`,

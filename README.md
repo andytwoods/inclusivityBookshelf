@@ -4,7 +4,7 @@ A static website for the Inclusivity Bookshelf scheme — helping university dep
 
 **Live site:** [www.inclusivitybookshelf.com](https://www.inclusivitybookshelf.com)
 
-Built with [Astro](https://astro.build). Deployed automatically to GitHub Pages on every push to `main`.
+Built with [Docusaurus](https://docusaurus.io/). Deployed automatically to GitHub Pages on every push to `main`.
 
 ## Running locally
 
@@ -12,42 +12,36 @@ Built with [Astro](https://astro.build). Deployed automatically to GitHub Pages 
 # Install dependencies
 npm install
 
-# Start dev server (usually http://localhost:4321)
-npm run dev
+# Start dev server (usually http://localhost:3000)
+npm start
 
 # Build for production
 npm run build
 
 # Preview the production build
-npm run preview
+npm run serve
 ```
 
 ## Project structure
 
 ```
 src/
-├── components/
-│   ├── DarkModeToggle.astro  # Light/dark theme toggle
-│   ├── Footer.astro          # Site footer
-│   └── Header.astro          # Sticky header with navigation
-├── layouts/
-│   └── BaseLayout.astro      # HTML shell, head, header/footer
+├── components/       # React components (Hero, Features, BookList, etc.)
+├── css/
+│   └── custom.css    # Global CSS and Docusaurus theming
+├── data/
+│   └── bookshelves.ts # Data for the bookshelf gallery
 ├── pages/
-│   └── index.astro           # Single-page site (all content)
-└── styles/
-    └── global.css            # All styles (theming, layout, components)
-
-public/
-├── CNAME                     # Custom domain for GitHub Pages
-└── favicon.svg               # Site favicon
-
-.github/workflows/
-└── deploy.yml                # GitHub Actions workflow for deployment
+│   └── index.mdx     # Main page content (MDX)
+└── theme/            # Theme overrides
+static/
+├── img/              # Images and favicons
+└── bookshelves/      # Bookshelf photos
 ```
 
 ## Editing content
 
-All content lives in `src/pages/index.astro`. Edit the HTML directly — the site rebuilds on push.
+Main content lives in `src/pages/index.mdx`. The hero and features sections are built with React components found in `src/components/`.
 
 ## Setting up GitHub Pages
 
@@ -73,7 +67,7 @@ Once DNS propagates, the site will be live at `https://www.inclusivitybookshelf.
 
 The site is built with accessibility in mind:
 
-- Semantic HTML landmarks (`header`, `nav`, `main`, `footer`)
+- Semantic HTML landmarks
 - Skip-to-content link
 - Logical heading hierarchy
 - Visible focus indicators
@@ -83,5 +77,7 @@ The site is built with accessibility in mind:
 - Dark mode with system preference detection and manual toggle
 
 ## Licence
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 Content is intended for reuse. If you set up a bookshelf, we would love to hear about it.
