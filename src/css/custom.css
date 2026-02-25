@@ -252,6 +252,11 @@
     width: clamp(180px, 55%, 340px) !important;
     padding: 1.5rem 1rem !important;
   }
+
+  .sections-wrap {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
 }
 
 @media (max-width: 30rem) {
