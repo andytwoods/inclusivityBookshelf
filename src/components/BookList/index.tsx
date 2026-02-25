@@ -147,10 +147,10 @@ export default function BookList(): React.JSX.Element {
         {books.map(({ title, author, url }) => (
           <li key={url}>
             <a href={url} target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600 }}>
-              {title}
+              {title}<span className="sr-only"> (opens in new tab)</span>
             </a>
             <br />
-            <span style={{ opacity: 0.7, fontSize: '0.9rem' }}>{author}</span>
+            <span style={{ color: 'var(--color-text-muted)', fontSize: '0.9rem' }}>{author}</span>
           </li>
         ))}
       </ul>

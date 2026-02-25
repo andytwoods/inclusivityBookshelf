@@ -25,7 +25,7 @@ const config: Config = {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
         name: 'Inclusivity Bookshelf',
-        description: 'A simple, low-cost way to build inclusion in your department — start a physical bookshelf with books on diversity, neurodiversity, race, gender, and belonging.',
+        description: 'A simple, way to build inclusion in your department. Start a physical bookshelf with books on diversity.',
         url: 'https://www.inclusivitybookshelf.com',
         author: { '@type': 'Person', name: 'Andy Woods', affiliation: 'Royal Holloway, University of London' },
       }),
@@ -72,7 +72,7 @@ const config: Config = {
     },
     footer: {
       style: 'light',
-      copyright: `Copyright © ${new Date().getFullYear()} Inclusivity Bookshelf. Released under the <a href="https://github.com/andytwoods/inclusivityBookshelf/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a> — this site is open source and <a href="https://github.com/andytwoods/inclusivityBookshelf" target="_blank" rel="noopener noreferrer">contributions are very welcome on GitHub</a>.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Inclusivity Bookshelf. Released under the <a href="https://github.com/andytwoods/inclusivityBookshelf/blob/main/LICENSE" target="_blank" rel="noopener noreferrer">MIT License<span class="sr-only"> (opens in new tab)</span></a> — this site is open source and <a href="https://github.com/andytwoods/inclusivityBookshelf" target="_blank" rel="noopener noreferrer">contributions are very welcome on GitHub<span class="sr-only"> (opens in new tab)</span></a>.`,
     },
   } satisfies Preset.ThemeConfig,
 };
