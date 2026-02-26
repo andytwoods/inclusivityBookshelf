@@ -16,7 +16,8 @@
       "Bash(npm uninstall:*)",
       "Bash(afinfo:*)",
       "Bash(echo no pngs in static root:*)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(npm info:*)"
     ]
   }
 }
