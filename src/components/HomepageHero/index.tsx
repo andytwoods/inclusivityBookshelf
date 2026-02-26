@@ -44,7 +44,7 @@ export default function HomepageHero(): React.JSX.Element {
           Inclusivity Bookshelf
         </h1>
         <p style={{ margin: '0 0 1.75rem', color: 'var(--color-text-muted)' }}>
-          A simple way to build inclusion
+          A simple way to build inclusion in workplaces and shared spaces
         </p>
         <a href="#contact" className="btn btn-primary">
           Get in Touch

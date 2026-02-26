@@ -95,7 +95,7 @@ export default function BookshelfGallery(): React.JSX.Element {
   const [active, setActive] = useState<{ item: Bookshelf; trigger: HTMLElement } | null>(null);
 
   return (
-    <section aria-labelledby="gallery-heading">
+    <section id="gallery" aria-labelledby="gallery-heading">
       <h2 id="gallery-heading">Bookshelves in the Wild</h2>
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyContent: 'center' }}>
         {bookshelves.map((item) => (
